@@ -1,14 +1,17 @@
 ﻿// Learn more about F# at http://fsharp.org
 
 open System
-open Mail.Imap
+open IOMail.Imap
+open IOConfig.Ini
 open System.Collections.Generic
 open System.Net.Mail
 open System.Linq
 
 [<EntryPoint>]
 let main argv =
-  let msgs:IEnumerable<MailMessage> = getMessages "hoge" "hoge" "hoge" 993
-  let formattedMsgList = msgs.Select(fun msg -> (printfn "%s <%s>\nbody:\n%s" msg.Subject msg.From.Address msg.Body))
-  Console.WriteLine("{0}", System.String.Join("\n", formattedMsgList))
+  let iniMap = readIniToDict "config.ini"
+  let msgs: IEnumerable<MailMessage> =
+    getMessages iniMap.["UNAME"] iniMap.["PASS"] iniMap.["SNAME"]  (iniMap.["PORT"] |> int)
+  for msg in msgs.Take(10) do
+    printfn "title<from>:%s <%s>\n" msg.Subject msg.From.Address
   0

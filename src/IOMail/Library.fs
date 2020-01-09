@@ -1,4 +1,4 @@
-﻿namespace Mail
+﻿namespace IOMail
 
 open S22.Imap
 open System.Collections.Generic

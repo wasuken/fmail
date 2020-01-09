@@ -19,4 +19,9 @@
     <PackageReference Include="coverlet.collector" Version="1.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\IOMail\IOMail.fsproj" />
+    <ProjectReference Include="..\..\src\IOConfig\IOConfig.fsproj" />
+  </ItemGroup>
+
 </Project>

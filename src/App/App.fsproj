@@ -10,7 +10,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Mail\Mail.fsproj" />
+    <ProjectReference Include="..\IOConfig\IOConfig.fsproj" />
+    <ProjectReference Include="..\IOMail\IOMail.fsproj" />
   </ItemGroup>
+
 
 </Project>

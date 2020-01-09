@@ -9,3 +9,5 @@ bin
 .DS_Store
 .AppleDouble
 .LSOverride
+config.ini
+.ionide
