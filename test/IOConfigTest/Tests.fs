@@ -1,6 +1,7 @@
 module Tests
 
 open System
+open System.IO
 open Xunit
 open IOConfig.Ini
 open System.Linq

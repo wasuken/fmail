@@ -11,3 +11,4 @@ bin
 .LSOverride
 config.ini
 .ionide
+*.sqlite

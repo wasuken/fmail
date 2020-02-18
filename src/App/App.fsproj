@@ -14,5 +14,11 @@
     <ProjectReference Include="..\IOMail\IOMail.fsproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FSharp.Data" Version="3.3.3" />
+    <PackageReference Include="SQLProvider" Version="1.1.83" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.112.0" />
+  </ItemGroup>
+
 
 </Project>
