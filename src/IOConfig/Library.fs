@@ -18,10 +18,10 @@ module Ini =
 module Connection =
     let private mkConnectionString (dataSource : string) =
         sprintf
-            "Data Source = %s;"
+            "Data Source = %s%s;"
+            (Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/.config/fmailer/")
             dataSource
-
-    let mkShared () = new SqliteConnection (mkConnectionString (__SOURCE_DIRECTORY__ + "/prod.sqlite"))
+    let mkShared () = new SqliteConnection (mkConnectionString ("db.sqlite"))
 
 module Types =
     [<CLIMutable>]
