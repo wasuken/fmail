@@ -22,15 +22,21 @@ let readMail count =
   for row in rows.Take(count) do
     printfn "title<from>:%s <%s>\n" row.Subject row.FromAddr
 
-let twoArg act count =
+let searchMail query =
+  let rows = searchMail query |> Async.RunSynchronously
+  for row in rows do
+    printfn "title<from>:%s <%s>\n" row.Subject row.FromAddr
+
+let twoArg act second =
   match act with
-    | "download" -> downloadMail count
-    | "read" -> readMail count
+    | "download" -> downloadMail (int second)
+    | "read" -> readMail (int second)
+    | "search" -> searchMail second
     | _ -> printfn "failed command."
 
 [<EntryPoint>]
 let main argv =
   match argv.Length with
-    | 2 -> twoArg (argv.First()) (int argv.[1])
+    | 2 -> twoArg (argv.First()) argv.[1]
     | _ -> printfn "failed length command"
   0

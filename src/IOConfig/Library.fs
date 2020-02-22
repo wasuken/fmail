@@ -21,7 +21,7 @@ module Connection =
             "Data Source = %s%s;"
             (Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/.config/fmailer/")
             dataSource
-    let mkShared () = new SqliteConnection (mkConnectionString ("db.sqlite"))
+    let mkShared () = new SqliteConnection (mkConnectionString "db.sqlite")
 
 module Types =
     [<CLIMutable>]
@@ -44,5 +44,9 @@ module Queries =
         parameters (dict [ "Subject", box subject; "FromAddr", box fromAddr ])
       }
       let selectMail = querySeqAsync<Types.Mail> {
-        script "select * from mail;"
+        script "select id, subject, from_addr as FromAddr from mail;"
+      }
+      let searchMail query = querySeqAsync<Types.Mail>{
+        script "select id, subject, from_addr as FromAddr from mail where subject like @Query"
+        parameters (dict [ "Query", box (sprintf "%%%s%%" query) ])
       }
