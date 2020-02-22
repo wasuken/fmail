@@ -22,10 +22,15 @@ let readMail count =
   for row in rows.Take(count) do
     printfn "title<from>:%s <%s>\n" row.Subject row.FromAddr
 
+let twoArg act count =
+  match act with
+    | "download" -> downloadMail count
+    | "read" -> readMail count
+    | _ -> printfn "failed command."
+
 [<EntryPoint>]
 let main argv =
-  match argv.First() with
-    | "download" -> downloadMail (int argv.[1])
-    | "read" -> readMail (int argv.[1])
-    | _ -> printfn "failed command."
+  match argv.Length with
+    | 2 -> twoArg (argv.First()) (int argv.[1])
+    | _ -> printfn "failed length command"
   0
